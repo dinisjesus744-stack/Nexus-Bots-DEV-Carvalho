@@ -4,8 +4,270 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexus Bots | Inovação e Automação</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* --- CSS INTEGRADO --- */
+        :root {
+            --bg-color: #050505;
+            --card-bg: rgba(15, 15, 15, 0.8);
+            --primary: #00a3ff;
+            --primary-glow: rgba(0, 163, 255, 0.4);
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Tech */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(to right, #111 1px, transparent 1px),
+                              linear-gradient(to bottom, #111 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+        }
+
+        .gradient-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 163, 255, 0.08) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: sticky;
+            top: 0;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo span { color: var(--primary); text-shadow: 0 0 10px var(--primary-glow); }
+
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--text-dim); 
+            text-transform: uppercase; 
+            font-size: 0.75rem; 
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+
+        .btn-nav {
+            border: 1px solid var(--primary);
+            padding: 0.6rem 1.5rem;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(0, 163, 255, 0.2);
+        }
+
+        .btn-nav:hover { background: var(--primary); box-shadow: 0 0 20px var(--primary-glow); }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 120px 5% 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border: 1px solid rgba(0, 163, 255, 0.3);
+            border-radius: 50px;
+            font-size: 0.65rem;
+            color: var(--primary);
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+            background: rgba(0, 163, 255, 0.05);
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .text-blue { color: var(--primary); text-shadow: 0 0 20px rgba(0, 163, 255, 0.3); }
+
+        .hero-subtitle {
+            color: var(--text-dim);
+            max-width: 650px;
+            font-size: 1.1rem;
+            margin-bottom: 45px;
+        }
+
+        .btn-main {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-main:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--primary-glow);
+        }
+
+        /* Seções Generais */
+        .section-container {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            letter-spacing: 4px;
+        }
+
+        .about-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-dim);
+            font-size: 1.2rem;
+        }
+
+        /* Cards de Serviços */
+        .grid-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 45px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .card:hover {
+            border-color: rgba(0, 163, 255, 0.4);
+            transform: translateY(-10px);
+            background: rgba(20, 20, 20, 0.9);
+        }
+
+        .card:hover::before { transform: translateX(100%); }
+
+        .icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
+        .card h3 { font-family: 'Orbitron', sans-serif; margin-bottom: 15px; font-size: 1.2rem; }
+        .card p { color: var(--text-dim); font-size: 0.95rem; }
+
+        /* Barra de Diferenciais */
+        .diferenciais-bar {
+            background: rgba(0, 163, 255, 0.03);
+            padding: 60px 5%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            border-top: 1px solid rgba(0, 163, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 163, 255, 0.1);
+        }
+
+        .diff-item {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Call to Action */
+        .cta-section { padding: 100px 5%; }
+        .cta-box {
+            background: linear-gradient(135deg, #001a2b 0%, #004e7a 100%);
+            padding: 80px 40px;
+            border-radius: 40px;
+            text-align: center;
+            border: 1px solid rgba(0, 163, 255, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-box h2 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; margin-bottom: 20px; }
+
+        /* Footer */
+        footer {
+            padding: 60px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-logo { font-family: 'Orbitron', sans-serif; margin-bottom: 15px; opacity: 0.8; }
+        .copyright { color: var(--text-dim); font-size: 0.8rem; letter-spacing: 1px; }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-title { font-size: 2.8rem; }
+            .cta-box h2 { font-size: 1.8rem; }
+        }
+    </style>
 </head>
 <body>
 
@@ -19,77 +281,95 @@
             <li><a href="#servicos">Serviços</a></li>
             <li><a href="#diferenciais">Diferenciais</a></li>
         </ul>
-        <a href="https://discord.gg/RZQS8zMM85" class="btn-nav">CONTATO</a>
+        <a href="https://discord.gg/RZQS8zMM85" class="btn-nav">ORÇAMENTO</a>
     </nav>
 
     <header class="hero">
-        <div class="badge">TECNOLOGIA QUE CONECTA O FUTURO</div>
+        <div class="badge">INOVAÇÃO • TECNOLOGIA • AUTOMAÇÃO</div>
         <h1 class="hero-title">Nexus Bots — Inovação <br><span class="text-blue">em Bots e Sistemas</span></h1>
-        <p class="hero-subtitle">Desenvolvemos bots personalizados para Discord e sites profissionais com foco em performance e automação no mais alto nível.</p>
+        <p class="hero-subtitle">Elevamos o nível da sua comunidade com bots inteligentes para Discord e desenvolvimento web de alta performance.</p>
         <a href="https://discord.gg/RZQS8zMM85" class="btn-main">ENTRAR NO DISCORD</a>
     </header>
 
     <section id="sobre" class="section-container">
         <h2 class="section-title">SOBRE NÓS</h2>
         <p class="about-text">
-            A <strong>Nexus Bots</strong> nasceu com o objetivo de revolucionar a forma como comunidades e projetos utilizam tecnologia. Somos especializados na criação de bots avançados e desenvolvimento web, transformando ideias em sistemas funcionais, seguros e escaláveis.
+            Transformamos a forma como projetos utilizam tecnologia. Somos especialistas na criação de sistemas <strong>modernos, seguros e totalmente escaláveis</strong> para quem não aceita o básico.
         </p>
     </section>
 
     <section id="servicos" class="section-container">
         <div class="grid-services">
             <div class="card">
-                <div class="icon">🤖</div>
+                <span class="icon">🤖</span>
                 <h3>Bots para Discord</h3>
-                <p>Personalização total para qualquer necessidade da sua comunidade.</p>
+                <p>Personalização total com comandos avançados e integração completa.</p>
             </div>
             <div class="card">
-                <div class="icon">🎫</div>
+                <span class="icon">🎫</span>
                 <h3>Sistema de Ticket</h3>
-                <p>Atendimento automatizado e organizado para suporte profissional.</p>
+                <p>Organize seu atendimento com logs, transcrições e automação de suporte.</p>
             </div>
             <div class="card">
-                <div class="icon">📝</div>
-                <h3>Registro</h3>
-                <p>Controle completo de entrada e gerenciamento de usuários.</p>
+                <span class="icon">📝</span>
+                <h3>Registro Inteligente</h3>
+                <p>Boas-vindas automáticas e coleta de dados para membros novos.</p>
             </div>
             <div class="card">
-                <div class="icon">🔐</div>
+                <span class="icon">🔐</span>
                 <h3>Whitelist (WL)</h3>
-                <p>Gerenciamento profissional de acessos para servidores de RP.</p>
+                <p>Sistema rigoroso de aprovação para servidores de FiveM e RP.</p>
             </div>
             <div class="card">
-                <div class="icon">🌐</div>
-                <h3>Sites</h3>
-                <p>Landing pages e sistemas web modernos e responsivos.</p>
+                <span class="icon">🌐</span>
+                <h3>Desenvolvimento Web</h3>
+                <p>Sites profissionais que carregam em milissegundos e vendem seu produto.</p>
             </div>
             <div class="card">
-                <div class="icon">⚙️</div>
+                <span class="icon">⚙️</span>
                 <h3>Automações</h3>
-                <p>Sistemas únicos e lógicas complexas sob medida.</p>
+                <p>Lógicas customizadas para poupar seu tempo e automatizar lucros.</p>
             </div>
         </div>
     </section>
 
     <section id="diferenciais" class="diferenciais-bar">
-        <div class="diff-item"><span>⚡</span> Agilidade</div>
-        <div class="diff-item"><span>💎</span> Qualidade</div>
-        <div class="diff-item"><span>🛡️</span> Segurança</div>
-        <div class="diff-item"><span>🔥</span> Exclusividade</div>
+        <div class="diff-item"><span class="text-blue">⚡</span> AGILIDADE</div>
+        <div class="diff-item"><span class="text-blue">💎</span> QUALIDADE</div>
+        <div class="diff-item"><span class="text-blue">🛡️</span> SEGURANÇA</div>
+        <div class="diff-item"><span class="text-blue">🔥</span> EXCLUSIVIDADE</div>
     </section>
 
     <section class="cta-section">
         <div class="cta-box">
-            <h2>Pronto para o próximo nível?</h2>
-            <p>Solicite seu orçamento agora mesmo.</p>
-            <a href="https://discord.gg/RZQS8zMM85" class="btn-main">SOLICITAR AGORA</a>
+            <h2>Pronto para começar?</h2>
+            <p style="margin-bottom: 30px; opacity: 0.8;">Junte-se a dezenas de projetos que já utilizam a tecnologia Nexus.</p>
+            <a href="https://discord.gg/RZQS8zMM85" class="btn-main" style="background: white; color: #001a2b;">SOLICITAR AGORA</a>
         </div>
     </section>
 
     <footer>
-        <p>Nexus Bots © 2026 - Todos os direitos reservados</p>
+        <div class="footer-logo">NEXUS <span class="text-blue">BOTS</span></div>
+        <p class="copyright">Nexus Bots © 2026 — Tecnologia que conecta o futuro.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Efeito de Revelação (Scroll Reveal)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.card, .section-title, .about-text, .cta-box').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(40px)";
+            el.style.transition = "all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)";
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
