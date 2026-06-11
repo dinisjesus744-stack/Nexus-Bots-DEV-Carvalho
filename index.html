@@ -1,375 +1,237 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Bots | Inovação e Automação</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <title>DINIS CARVALHO SOLUTIONS | Soluções Digitais, Bots e Websites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* --- CSS INTEGRADO --- */
-        :root {
-            --bg-color: #050505;
-            --card-bg: rgba(15, 15, 15, 0.8);
-            --primary: #00a3ff;
-            --primary-glow: rgba(0, 163, 255, 0.4);
-            --text-main: #ffffff;
-            --text-dim: #a0a0a0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Background Tech */
-        .bg-grid {
-            position: fixed;
-            inset: 0;
-            background-image: linear-gradient(to right, #111 1px, transparent 1px),
-                              linear-gradient(to bottom, #111 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -2;
-        }
-
-        .gradient-overlay {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 163, 255, 0.08) 0%, transparent 70%);
-            z-index: -1;
-        }
-
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: sticky;
-            top: 0;
-            background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-        }
-
-        .logo span { color: var(--primary); text-shadow: 0 0 10px var(--primary-glow); }
-
-        .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-links a { 
-            text-decoration: none; 
-            color: var(--text-dim); 
-            text-transform: uppercase; 
-            font-size: 0.75rem; 
-            letter-spacing: 2px;
-            transition: 0.3s;
-        }
-        .nav-links a:hover { color: var(--primary); }
-
-        .btn-nav {
-            border: 1px solid var(--primary);
-            padding: 0.6rem 1.5rem;
-            border-radius: 5px;
-            color: white;
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: bold;
-            transition: 0.3s;
-            box-shadow: 0 0 10px rgba(0, 163, 255, 0.2);
-        }
-
-        .btn-nav:hover { background: var(--primary); box-shadow: 0 0 20px var(--primary-glow); }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 120px 5% 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 6px 16px;
-            border: 1px solid rgba(0, 163, 255, 0.3);
-            border-radius: 50px;
-            font-size: 0.65rem;
-            color: var(--primary);
-            margin-bottom: 24px;
-            letter-spacing: 2px;
-            background: rgba(0, 163, 255, 0.05);
-        }
-
-        .hero-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2rem, 8vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 25px;
-        }
-
-        .text-blue { color: var(--primary); text-shadow: 0 0 20px rgba(0, 163, 255, 0.3); }
-
-        .hero-subtitle {
-            color: var(--text-dim);
-            max-width: 650px;
-            font-size: 1.1rem;
-            margin-bottom: 45px;
-        }
-
-        .btn-main {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 1.2rem 3rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 900;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .btn-main:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px var(--primary-glow);
-        }
-
-        /* Seções Generais */
-        .section-container {
-            padding: 100px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 50px;
-            letter-spacing: 4px;
-        }
-
-        .about-text {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            color: var(--text-dim);
-            font-size: 1.2rem;
-        }
-
-        /* Cards de Serviços */
-        .grid-services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 50px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 45px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-            transform: translateX(-100%);
-            transition: 0.5s;
-        }
-
-        .card:hover {
-            border-color: rgba(0, 163, 255, 0.4);
-            transform: translateY(-10px);
-            background: rgba(20, 20, 20, 0.9);
-        }
-
-        .card:hover::before { transform: translateX(100%); }
-
-        .icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
-        .card h3 { font-family: 'Orbitron', sans-serif; margin-bottom: 15px; font-size: 1.2rem; }
-        .card p { color: var(--text-dim); font-size: 0.95rem; }
-
-        /* Barra de Diferenciais */
-        .diferenciais-bar {
-            background: rgba(0, 163, 255, 0.03);
-            padding: 60px 5%;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 30px;
-            border-top: 1px solid rgba(0, 163, 255, 0.1);
-            border-bottom: 1px solid rgba(0, 163, 255, 0.1);
-        }
-
-        .diff-item {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.1rem;
-        }
-
-        /* Call to Action */
-        .cta-section { padding: 100px 5%; }
-        .cta-box {
-            background: linear-gradient(135deg, #001a2b 0%, #004e7a 100%);
-            padding: 80px 40px;
-            border-radius: 40px;
-            text-align: center;
-            border: 1px solid rgba(0, 163, 255, 0.3);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .cta-box h2 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; margin-bottom: 20px; }
-
-        /* Footer */
-        footer {
-            padding: 60px 5%;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footer-logo { font-family: 'Orbitron', sans-serif; margin-bottom: 15px; opacity: 0.8; }
-        .copyright { color: var(--text-dim); font-size: 0.8rem; letter-spacing: 1px; }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero-title { font-size: 2.8rem; }
-            .cta-box h2 { font-size: 1.8rem; }
-        }
+        body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 scroll-smooth antialiased">
 
-    <div class="bg-grid"></div>
-    <div class="gradient-overlay"></div>
-
-    <nav class="navbar">
-        <div class="logo">NEXUS <span>BOTS</span></div>
-        <ul class="nav-links">
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#diferenciais">Diferenciais</a></li>
-        </ul>
-        <a href="https://discord.gg/RZQS8zMM85" class="btn-nav">ORÇAMENTO</a>
-    </nav>
-
-    <header class="hero">
-        <div class="badge">INOVAÇÃO • TECNOLOGIA • AUTOMAÇÃO</div>
-        <h1 class="hero-title">Nexus Bots — Inovação <br><span class="text-blue">em Bots e Sistemas</span></h1>
-        <p class="hero-subtitle">Elevamos o nível da sua comunidade com bots inteligentes para Discord e desenvolvimento web de alta performance.</p>
-        <a href="https://discord.gg/RZQS8zMM85" class="btn-main">ENTRAR NO DISCORD</a>
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/70 border-b border-slate-900">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-lg font-bold tracking-wider uppercase bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                DINIS CARVALHO SOLUTIONS
+            </a>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-400">
+                <a href="#sobre" class="hover:text-white transition">Sobre</a>
+                <a href="#servicos" class="hover:text-white transition">Serviços</a>
+                <a href="#vantagens" class="hover:text-white transition">Vantagens</a>
+                <a href="#planos" class="hover:text-white transition">Planos</a>
+            </nav>
+            <a href="https://discord.gg/kQFNMqPpv" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition shadow-lg shadow-indigo-600/20">
+                Entrar no Discord
+            </a>
+        </div>
     </header>
 
-    <section id="sobre" class="section-container">
-        <h2 class="section-title">SOBRE NÓS</h2>
-        <p class="about-text">
-            Transformamos a forma como projetos utilizam tecnologia. Somos especialistas na criação de sistemas <strong>modernos, seguros e totalmente escaláveis</strong> para quem não aceita o básico.
-        </p>
-    </section>
+    <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-6 pt-12">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
+            <div class="absolute top-12 left-10 w-72 h-72 bg-indigo-500/10 rounded-full blur-[100px]"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px]"></div>
+        </div>
 
-    <section id="servicos" class="section-container">
-        <div class="grid-services">
-            <div class="card">
-                <span class="icon">🤖</span>
-                <h3>Bots para Discord</h3>
-                <p>Personalização total com comandos avançados e integração completa.</p>
-            </div>
-            <div class="card">
-                <span class="icon">🎫</span>
-                <h3>Sistema de Ticket</h3>
-                <p>Organize seu atendimento com logs, transcrições e automação de suporte.</p>
-            </div>
-            <div class="card">
-                <span class="icon">📝</span>
-                <h3>Registro Inteligente</h3>
-                <p>Boas-vindas automáticas e coleta de dados para membros novos.</p>
-            </div>
-            <div class="card">
-                <span class="icon">🔐</span>
-                <h3>Whitelist (WL)</h3>
-                <p>Sistema rigoroso de aprovação para servidores de FiveM e RP.</p>
-            </div>
-            <div class="card">
-                <span class="icon">🌐</span>
-                <h3>Desenvolvimento Web</h3>
-                <p>Sites profissionais que carregam em milissegundos e vendem seu produto.</p>
-            </div>
-            <div class="card">
-                <span class="icon">⚙️</span>
-                <h3>Automações</h3>
-                <p>Lógicas customizadas para poupar seu tempo e automatizar lucros.</p>
+        <div class="max-w-4xl text-center z-10">
+            <span class="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-6">
+                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+                Agência de Desenvolvimento Digital
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-[1.15] bg-gradient-to-b from-white via-slate-200 to-slate-500 bg-clip-text text-transparent">
+                Transformamos ideias em <br class="hidden sm:inline">sistemas digitais inteligentes
+            </h1>
+            <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Criamos bots personalizados para Discord e websites modernos que ajudam projetos, comunidades e empresas a crescer online.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="https://discord.gg/kQFNMqPpv" target="_blank" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-8 py-4 rounded-xl transition shadow-xl shadow-indigo-600/20 text-center">
+                    Cria o Teu Futuro Digital Hoje
+                </a>
+                <a href="#servicos" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium px-8 py-4 rounded-xl border border-slate-800 transition text-center">
+                    Conhecer Serviços
+                </a>
             </div>
         </div>
     </section>
 
-    <section id="diferenciais" class="diferenciais-bar">
-        <div class="diff-item"><span class="text-blue">⚡</span> AGILIDADE</div>
-        <div class="diff-item"><span class="text-blue">💎</span> QUALIDADE</div>
-        <div class="diff-item"><span class="text-blue">🛡️</span> SEGURANÇA</div>
-        <div class="diff-item"><span class="text-blue">🔥</span> EXCLUSIVIDADE</div>
-    </section>
-
-    <section class="cta-section">
-        <div class="cta-box">
-            <h2>Pronto para começar?</h2>
-            <p style="margin-bottom: 30px; opacity: 0.8;">Junte-se a dezenas de projetos que já utilizam a tecnologia Nexus.</p>
-            <a href="https://discord.gg/RZQS8zMM85" class="btn-main" style="background: white; color: #001a2b;">SOLICITAR AGORA</a>
+    <section id="sobre" class="py-24 border-t border-slate-900 bg-slate-900/20">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Sobre a Empresa</span>
+                <h2 class="text-3xl font-bold tracking-tight text-white mt-2 mb-6">Construímos e escalamos o teu projeto online</h2>
+                <p class="text-slate-400 leading-relaxed mb-6">
+                    A <strong>DINIS CARVALHO SOLUTIONS</strong> é uma agência de desenvolvimento digital focada em criar soluções eficientes, modernas e acessíveis. O nosso objetivo é simples: entregar qualidade profissional para que possas focar-te no que mais importa.
+                </p>
+                <div class="border-l-2 border-indigo-500 pl-4 italic text-slate-300 text-sm">
+                    "Ajudamos-te a construir e escalar o teu projeto online com qualidade profissional."
+                </div>
+            </div>
+            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl space-y-4">
+                <h3 class="text-sm font-semibold text-slate-300 uppercase tracking-wider">Especialidades do nosso ecossistema:</h3>
+                <div class="flex items-start gap-3">
+                    <span class="text-indigo-400 mt-1">✦</span>
+                    <p class="text-slate-400 text-sm"><strong class="text-slate-200">Bots para Discord:</strong> Automação inteligente e gestão de comunidades.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-indigo-400 mt-1">✦</span>
+                    <p class="text-slate-400 text-sm"><strong class="text-slate-200">Websites Profissionais:</strong> Interfaces responsivas, rápidas e otimizadas.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-indigo-400 mt-1">✦</span>
+                    <p class="text-slate-400 text-sm"><strong class="text-slate-200">Automação de Sistemas:</strong> Ferramentas digitais desenhadas à medida.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <div class="footer-logo">NEXUS <span class="text-blue">BOTS</span></div>
-        <p class="copyright">Nexus Bots © 2026 — Tecnologia que conecta o futuro.</p>
+    <section id="servicos" class="py-24 max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs font-bold uppercase tracking-widest text-purple-400">O que fazemos</span>
+            <h2 class="text-3xl font-bold tracking-tight text-white mt-2 mb-4">Os Nossos Serviços</h2>
+            <p class="text-slate-400 text-sm sm:text-base">Desenvolvemos ferramentas robustas e websites otimizados para garantir o teu sucesso digital.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div class="bg-slate-900/40 border border-slate-900 p-8 rounded-2xl hover:bg-slate-900/80 hover:border-slate-800 transition duration-300">
+                <div class="w-10 h-10 bg-indigo-500/10 text-indigo-400 rounded-lg flex items-center justify-center mb-6 font-bold text-xl">🤖</div>
+                <h3 class="text-xl font-bold text-white mb-4">Bots para Discord</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">Criamos bots completos e personalizados para qualquer tipo de servidor, garantindo máxima interatividade.</p>
+                <ul class="grid grid-cols-2 gap-3 text-xs text-slate-300 border-t border-slate-800/60 pt-4">
+                    <li class="flex items-center gap-2">🔹 Moderação Automática</li>
+                    <li class="flex items-center gap-2">🔹 Tickets & Suporte</li>
+                    <li class="flex items-center gap-2">🔹 Economia & Níveis</li>
+                    <li class="flex items-center gap-2">🔹 Automação Geral</li>
+                </ul>
+            </div>
+
+            <div class="bg-slate-900/40 border border-slate-900 p-8 rounded-2xl hover:bg-slate-900/80 hover:border-slate-800 transition duration-300">
+                <div class="w-10 h-10 bg-purple-500/10 text-purple-400 rounded-lg flex items-center justify-center mb-6 font-bold text-xl">🌐</div>
+                <h3 class="text-xl font-bold text-white mb-4">Criação de Websites</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">Desenvolvemos websites modernos, limpos e totalmente otimizados para motores de busca (SEO).</p>
+                <ul class="grid grid-cols-2 gap-3 text-xs text-slate-300 border-t border-slate-800/60 pt-4">
+                    <li class="flex items-center gap-2">🔹 Design Responsivo</li>
+                    <li class="flex items-center gap-2">🔹 Landing Pages/Portfólios</li>
+                    <li class="flex items-center gap-2">🔹 Integração Discord/APIs</li>
+                    <li class="flex items-center gap-2">🔹 Alta Performance</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="vantagens" class="py-24 bg-slate-900/10 border-t border-slate-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Diferencial</span>
+                <h2 class="text-3xl font-bold tracking-tight text-white mt-2">Porquê escolher-nos?</h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="p-6 bg-slate-900/40 border border-slate-900/60 rounded-xl flex gap-4">
+                    <span class="text-emerald-400 font-bold">✔</span>
+                    <div>
+                        <h4 class="font-semibold text-white text-sm mb-1">Design moderno e profissional</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed">Interfaces limpas alinhadas com as tendências do mercado SaaS.</p>
+                    </div>
+                </div>
+                <div class="p-6 bg-slate-900/40 border border-slate-900/60 rounded-xl flex gap-4">
+                    <span class="text-emerald-400 font-bold">✔</span>
+                    <div>
+                        <h4 class="font-semibold text-white text-sm mb-1">Soluções personalizadas</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed">Cada linha de código é feita à medida das necessidades do teu negócio.</p>
+                    </div>
+                </div>
+                <div class="p-6 bg-slate-900/40 border border-slate-900/60 rounded-xl flex gap-4">
+                    <span class="text-emerald-400 font-bold">✔</span>
+                    <div>
+                        <h4 class="font-semibold text-white text-sm mb-1">Suporte rápido e direto</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed">Sem burocracias. Atendimento ágil e focado em resolver problemas.</p>
+                    </div>
+                </div>
+                <div class="p-6 bg-slate-900/40 border border-slate-900/60 rounded-xl flex gap-4">
+                    <span class="text-emerald-400 font-bold">✔</span>
+                    <div>
+                        <h4 class="font-semibold text-white text-sm mb-1">Experiência em ecossistemas</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed">Domínio completo da API do Discord e integrações web.</p>
+                    </div>
+                </div>
+                <div class="p-6 bg-slate-900/40 border border-slate-900/60 rounded-xl flex gap-4">
+                    <span class="text-emerald-400 font-bold">✔</span>
+                    <div>
+                        <h4 class="font-semibold text-white text-sm mb-1">Crescimento real</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed">Sistemas desenhados para reter utilizadores e captar clientes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="planos" class="py-24 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-pink-400">Preços</span>
+                <h2 class="text-3xl font-bold tracking-tight text-white mt-2 mb-4">Planos Flexíveis</h2>
+                <p class="text-slate-400 text-sm">Escolhe a estrutura ideal para dar os próximos passos com segurança.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto items-stretch">
+                <div class="bg-slate-900/30 border border-slate-900 p-8 rounded-2xl flex flex-col justify-between hover:border-slate-800 transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xs font-semibold text-slate-400 bg-slate-800 px-2.5 py-1 rounded-md">🆓 Plano Gratuito</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Free Plan</h3>
+                        <p class="text-xs text-slate-400 mb-6">Ideal para validar ideias e dar vida a novas comunidades que estão a começar.</p>
+                        <div class="h-px bg-slate-800/60 my-6"></div>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-center gap-2 text-emerald-400">✔ Website básico gratuito</li>
+                            <li class="flex items-center gap-2 text-emerald-400">✔ Bot simples para Discord</li>
+                            <li class="flex items-center gap-2 text-slate-500">❌ Sem design exclusivo ou suporte prioritário</li>
+                        </ul>
+                    </div>
+                    <a href="https://discord.gg/kQFNMqPpv" target="_blank" class="block text-center mt-8 bg-slate-800 hover:bg-slate-700 text-white py-3 rounded-xl text-xs font-medium transition">Começar Grátis</a>
+                </div>
+
+                <div class="bg-slate-900/90 border-2 border-indigo-500 p-8 rounded-2xl flex flex-col justify-between relative shadow-xl shadow-indigo-500/5">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-md border border-indigo-500/20">💎 Premium</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Premium Plan</h3>
+                        <p class="text-xs text-slate-400 mb-6">Soluções avançadas criadas sob medida para quem quer um projeto sério e de alta performance.</p>
+                        <div class="h-px bg-slate-800/60 my-6"></div>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-center gap-2 text-indigo-400">✔ Bots completos e totalmente personalizados</li>
+                            <li class="flex items-center gap-2 text-indigo-400">✔ Websites profissionais com design exclusivo</li>
+                            <li class="flex items-center gap-2 text-indigo-400">✔ Suporte e atualizações contínuas</li>
+                            <li class="flex items-center gap-2 text-indigo-400">✔ Maior performance e funcionalidades</li>
+                        </ul>
+                    </div>
+                    <a href="https://discord.gg/kQFNMqPpv" target="_blank" class="block text-center mt-8 bg-indigo-600 hover:bg-indigo-500 text-white py-3 rounded-xl text-xs font-medium transition shadow-lg shadow-indigo-600/20">Solicitar Solução Premium</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-t border-slate-900 bg-gradient-to-b from-transparent to-slate-900/50 text-center px-6">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4">Queres um bot ou website profissional para o teu projeto?</h2>
+            <p class="text-slate-400 text-sm sm:text-base mb-8">Nós criamos tudo por ti — rápido, moderno e personalizado.</p>
+            
+            <div class="inline-flex flex-col items-center gap-4">
+                <a href="https://discord.gg/kQFNMqPpv" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-8 py-3.5 rounded-xl transition shadow-xl shadow-indigo-600/20 text-sm">
+                    👉 Entrar no Discord da DINIS CARVALHO SOLUTIONS
+                </a>
+                <span class="text-xs text-slate-500 tracking-wide uppercase mt-2">DINIS CARVALHO SOLUTIONS — Cria o teu futuro digital hoje.</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 border-t border-slate-900/60 text-center text-[11px] text-slate-600 tracking-wider">
+        <p>&copy; 2026 DINIS CARVALHO SOLUTIONS. Todos os direitos reservados.</p>
     </footer>
 
-    <script>
-        // Efeito de Revelação (Scroll Reveal)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0)";
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.card, .section-title, .about-text, .cta-box').forEach(el => {
-            el.style.opacity = "0";
-            el.style.transform = "translateY(40px)";
-            el.style.transition = "all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)";
-            observer.observe(el);
-        });
-    </script>
 </body>
 </html>
